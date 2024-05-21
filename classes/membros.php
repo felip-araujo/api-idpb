@@ -34,7 +34,7 @@ class Membros
     }
 
     if (!$resultados) {
-      
+
       throw new Exception("Nenhum membro no banco de dados, com o id selecionado");
     }
 
@@ -50,7 +50,7 @@ class Membros
       $resultados = "Membro deletado com sucesso!";
     } else {
       throw new Exception("Membro não deletado");
-    } 
+    }
     return $resultados;
   }
 }

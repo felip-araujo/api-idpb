@@ -22,8 +22,10 @@ class Lideranca
 
     public function id($parametros)
     {
-        $sql = $this->pdo->prepare("SELECT * FROM Usuarios_X WHERE ID_Usuario = :parametros");
-        $sql->bindParam(':parametros', $parametros);
+        $param1 = $parametros[0];
+
+        $sql = $this->pdo->prepare("SELECT * FROM Usuarios_X WHERE ID_Usuario = :param1");
+        $sql->bindParam(':param1', $param1);
         $sql->execute();
         $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -34,9 +36,11 @@ class Lideranca
     }
 
     public function nome($parametros)
-    {
-        $sql = $this->pdo->prepare("SELECT Nome FROM Usuarios_X WHERE ID_Usuario = :parametros");
-        $sql->bindParam(':parametros', $parametros);
+    { 
+        $param1 = $parametros[0];
+
+        $sql = $this->pdo->prepare("SELECT Nome FROM Usuarios_X WHERE ID_Usuario = :param1");
+        $sql->bindParam(':param1', $param1);
         $sql->execute();
         $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
 

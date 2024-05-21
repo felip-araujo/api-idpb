@@ -39,9 +39,11 @@ class Rest
 
         $metodo = $url[0];
         array_shift($url);
-
-        $parametros = array();
-        $parametros = $url;
+        
+        $parametros = array($url);
+         
+        
+        
 
         try {
             if (class_exists($classe)) {
