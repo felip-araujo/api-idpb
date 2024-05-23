@@ -55,4 +55,22 @@ class Usuario_Funcoes
             return $resultados;
         }
     }
+
+    public function inserir_funcao($parametros)
+    {
+        $param1 = $parametros[0];
+        $param2 = $parametros[1];
+
+        $sql = $this->pdo->prepare("INSERT INTO Usuario_Funcoes_X (ID_Usuario, ID_Funcao) VALUES (:param1, :param2)");
+        $sql->bindParam(':param1', $param1);
+        $sql->bindParam(':param2', $param2);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $resultados = 'Nova função inserida com sucesso!';
+        } else {
+            throw new Exception("Erro ao inserir nova função");
+        }
+
+        return $resultados;
+    }
 }

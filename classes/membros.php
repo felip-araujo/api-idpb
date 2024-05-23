@@ -23,9 +23,12 @@ class Membros
 
   public function id($parametros)
   {
+
+    $param1 = $parametros[0];
+
     require_once './database/conexao.php';
-    $sql = $pdo->prepare("SELECT * FROM membros WHERE id = :parametros");
-    $sql->bindParam(':parametros', $parametros);
+    $sql = $pdo->prepare("SELECT * FROM membros WHERE id = :param1");
+    $sql->bindParam(':param1', $param1);
     $sql->execute();
     $retorno = array();
 
@@ -34,7 +37,6 @@ class Membros
     }
 
     if (!$resultados) {
-
       throw new Exception("Nenhum membro no banco de dados, com o id selecionado");
     }
 
@@ -43,9 +45,12 @@ class Membros
 
   public function deletar($parametros)
   {
+
+    $param1 = $parametros[0];
+
     require_once './database/conexao.php';
-    $sql = $pdo->prepare("DELETE FROM membros WHERE id = :parametros");
-    $sql->bindParam(':parametros', $parametros);
+    $sql = $pdo->prepare("DELETE FROM membros WHERE id = :param1");
+    $sql->bindParam(':param1', $param1);
     if ($sql->execute()) {
       $resultados = "Membro deletado com sucesso!";
     } else {

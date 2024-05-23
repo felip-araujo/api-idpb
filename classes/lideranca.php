@@ -8,6 +8,7 @@ class Lideranca
         $this->pdo = $pdo;
     }
 
+    //funcao metodo get 
     public function listar()
     {
         $sql = $this->pdo->prepare("SELECT * FROM Usuarios_X");
