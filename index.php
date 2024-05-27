@@ -6,28 +6,28 @@ require_once './classes/membros.php';
 require_once './classes/lideranca.php';
 require_once './classes/usuarios_funcoes.php';
 
-// // Função de autenticação básica
-// function authenticate() {
-//     if (!isset($_SERVER['PHP_AUTH_USER'])) {
-//         header('WWW-Authenticate: Basic realm="My API"');
-//         header('HTTP/1.0 401 Unauthorized');
-//         echo json_encode(['status' => 'erro', 'dados' => 'Autenticação requerida.']);
-//         exit;
-//     } else {
-//         $username = $_SERVER['PHP_AUTH_USER'];
-//         $password = $_SERVER['PHP_AUTH_PW'];
+// Função de autenticação básica
+function authenticate() {
+    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+        header('WWW-Authenticate: Basic realm="My API"');
+        header('HTTP/1.0 401 Unauthorized');
+        echo json_encode(['status' => 'erro', 'dados' => 'Autenticação requerida.']);
+        exit;
+    } else {
+        $username = $_SERVER['PHP_AUTH_USER'];
+        $password = $_SERVER['PHP_AUTH_PW'];
 
-//         // Substitua 'seu_usuario' e 'sua_senha' pelas suas credenciais
-//         if ($username !== 'felp' || $password !== '159753') {
-//             header('HTTP/1.0 403 Forbidden');
-//             echo json_encode(['status' => 'erro', 'dados' => 'Credenciais inválidas.']);
-//             exit;
-//         }
-//     }
-// }
+        // Substitua 'seu_usuario' e 'sua_senha' pelas suas credenciais
+        if ($username !== 'felp' || $password !== '159753') {
+            header('HTTP/1.0 403 Forbidden');
+            echo json_encode(['status' => 'erro', 'dados' => 'Credenciais inválidas.']);
+            exit;
+        }
+    }
+}
 
-// // Chama a função de autenticação no início do script
-// authenticate();
+// Chama a função de autenticação no início do script
+authenticate();
 
 class Rest
 {
