@@ -7,10 +7,17 @@ require_once './classes/lideranca.php';
 require_once './classes/usuarios_funcoes.php';
 
 function authenticate()
-{
+{ 
+
+    if(!isset($_SERVER)){
+        header('WWW-Authenticate: Basic realm="My API"');
+        header('HTTP/1.0 401 Unauthorized');
+        echo json_encode(['status' => 'erro', 'dados' => 'Erro de servidor']);
+        exit;
+    }
     // Verifica se os parâmetros de autenticação foram enviados
-    $username = $_REQUEST['PHP_AUTH_USER'];
-    $password = $_REQUEST['PHP_AUTH_PW'];
+    $username = $_SERVER['PHP_AUTH_USER'] ?? null;
+    $password = $_SERVER['PHP_AUTH_PW'] ?? null ;
 
     if (!$username || !$password) {
         header('WWW-Authenticate: Basic realm="My API"');
