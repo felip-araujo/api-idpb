@@ -9,8 +9,8 @@ require_once './classes/usuarios_funcoes.php';
 function authenticate()
 {
     // Verifica se os parâmetros de autenticação foram enviados
-    $username = $_REQUEST['PHP_AUTH_USER'] ?? null;
-    $password = $_REQUEST['PHP_AUTH_PW'] ?? null;
+    $username = $_REQUEST['PHP_AUTH_USER'];
+    $password = $_REQUEST['PHP_AUTH_PW'];
 
     if (!$username || !$password) {
         header('WWW-Authenticate: Basic realm="My API"');
