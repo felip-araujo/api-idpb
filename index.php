@@ -6,19 +6,18 @@ require_once './classes/membros.php';
 require_once './classes/lideranca.php';
 require_once './classes/usuarios_funcoes.php';
 
-// Função de autenticação básica
-function authenticate() {
-    // Verifica se as credenciais de autenticação foram enviadas
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+function authenticate()
+{
+    // Verifica se os parâmetros de autenticação foram enviados
+    $username = $_REQUEST['PHP_AUTH_USER'] ?? null;
+    $password = $_REQUEST['PHP_AUTH_PW'] ?? null;
+
+    if (!$username || !$password) {
         header('WWW-Authenticate: Basic realm="My API"');
         header('HTTP/1.0 401 Unauthorized');
         echo json_encode(['status' => 'erro', 'dados' => 'Autenticação requerida.']);
         exit;
     }
-
-    // Obtém o nome de usuário e a senha
-    $username = $_SERVER['PHP_AUTH_USER'];
-    $password = $_SERVER['PHP_AUTH_PW'];
 
     // Adiciona logs para depuração
     error_log("Autenticação tentativa de usuário: $username");
@@ -52,15 +51,15 @@ class Rest
 
         $metodo = $url[0];
         array_shift($url);
-        
+
         $parametros = array($url);
-         
-        
-        
+
+
+
 
         try {
             if (class_exists($classe)) {
-                if (method_exists($classe, $metodo)) {  
+                if (method_exists($classe, $metodo)) {
                     $retorno = call_user_func_array(array(new $classe, $metodo), $parametros);
                     return json_encode(array('status' => 'sucesso', 'dados' => $retorno));
                 } else {
