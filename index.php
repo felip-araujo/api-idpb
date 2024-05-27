@@ -27,7 +27,7 @@ function authenticate() {
 }
 
 // Chama a função de autenticação no início do script
-authenticate();
+// authenticate();
 
 class Rest
 {
