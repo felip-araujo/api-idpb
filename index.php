@@ -10,7 +10,7 @@ require_once './classes/usuarios_funcoes.php';
 function authenticate() {
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
         header('WWW-Authenticate: Basic realm="My API"');
-        header('HTTPS/1.0 401 Unauthorized');
+        header('HTTP/1.0 401 Unauthorized');
         echo json_encode(['status' => 'erro', 'dados' => 'Autenticação requerida.']);
         exit;
     } else {
@@ -19,7 +19,7 @@ function authenticate() {
 
         // Substitua 'seu_usuario' e 'sua_senha' pelas suas credenciais
         if ($username !== 'felp' || $password !== '159753') {
-            header('HTTPS/1.0 403 Forbidden');
+            header('HTTP/1.0 403 Forbidden');
             echo json_encode(['status' => 'erro', 'dados' => 'Credenciais inválidas.']);
             exit;
         }
