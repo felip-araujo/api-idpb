@@ -2,6 +2,19 @@
 
 header('Content-Type: application/json;');
 
+header("Access-Control-Allow-Origin: *");
+// Permitir métodos específicos
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+// Permitir cabeçalhos específicos
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-API-Key");
+
+// Se a solicitação for OPTIONS, responder com status 200 e sair
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+
 // Verifique se a chave de API foi enviada
 if (!isset($_SERVER['HTTP_X_API_KEY'])) {
     http_response_code(401); // Responda com erro de autenticação
@@ -24,10 +37,6 @@ if ($apiKey !== 'api-auth-3devs') {
 require_once './classes/membros.php';
 require_once './classes/lideranca.php';
 require_once './classes/usuarios_funcoes.php';
-
-
-
-
 
 
 class Rest
