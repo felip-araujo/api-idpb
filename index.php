@@ -11,7 +11,7 @@ if (!isset($_SERVER['HTTP_X_API_KEY'])) {
 
 // Verifique se a chave de API é válida
 $apiKey = $_SERVER['HTTP_X_API_KEY'];
-if ($apiKey !== 'api-idpb') {
+if ($apiKey !== 'api-auth-3devs') {
     http_response_code(401); // Responda com erro de autenticação
     echo json_encode(['erro' => 'chave nao validada']);
     exit;
