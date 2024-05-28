@@ -1,4 +1,10 @@
 RewriteEngine On
+
+# Preserve custom API key header during internal redirects
+RewriteCond %{HTTP:HTTP_API_KEY} .
+RewriteRule ^ - [E=HTTP_API_KEY:%{HTTP:HTTP_API_KEY}]
+
+# Rewrite rules to route requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

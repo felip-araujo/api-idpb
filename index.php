@@ -2,9 +2,31 @@
 
 header('Content-Type: application/json;');
 
+// Verifique se a chave de API foi enviada
+if (!isset($_SERVER['HTTP_X_API_KEY'])) {
+    http_response_code(401); // Responda com erro de autenticação
+    echo json_encode(['erro' => 'chave nao identificada']);
+    exit;
+}
+
+// Verifique se a chave de API é válida
+$apiKey = $_SERVER['HTTP_X_API_KEY'];
+if ($apiKey !== 'api-idpb') {
+    http_response_code(401); // Responda com erro de autenticação
+    echo json_encode(['erro' => 'chave nao validada']);
+    exit;
+}
+
+// Chave de API válida, continue com o processamento da solicitação
+// Aqui você pode adicionar seu código para lidar com a solicitação da API
+
+
 require_once './classes/membros.php';
 require_once './classes/lideranca.php';
 require_once './classes/usuarios_funcoes.php';
+
+
+
 
 
 
