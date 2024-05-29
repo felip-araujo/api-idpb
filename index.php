@@ -3,9 +3,7 @@
 header('Content-Type: application/json;');
 
 header("Access-Control-Allow-Origin: *");
-// Permitir métodos específicos
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-// Permitir cabeçalhos específicos
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-API-Key");
 
 // Se a solicitação for OPTIONS, responder com status 200 e sair
